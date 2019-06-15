@@ -142,14 +142,10 @@ def write_tweets(t):
                 os.makedirs(collection_folder+user+media_fold)
 
 
-        print user, datetime.now(), "start"
-
         # get the tweets (max 3200)
         user_tweets = all_tweets(t, user, collection_folder+user+media_fold)
         whole_obj = {'tweets': user_tweets, 'user_object': user_obj}
         
-        print user, datetime.now(), "end"
-
         # write the tweets to file
         tweet_file = open(collection_folder+user+'.json', 'w+')
         json.dump(whole_obj, tweet_file)
@@ -157,9 +153,6 @@ def write_tweets(t):
 
 
 if __name__ == "__main__":
-    print datetime.now(), "program start"
-
     t = init()
     write_tweets(t)
 
-    print datetime.now(), "program end"

@@ -146,16 +146,17 @@ Traverses the `downloaded_tweets` folder to create an `analysis/tweet_sizes.csv`
 
 ### Merge Sizing
 The `merge_sizing` option creates a `<compression_algo>_sizing.csv` file for every distinct compression algorithm found in the `analysis` folder. The file will list for each compression level:
+ - Total time elapsed during compression (sec)
  - Summed size (in bytes) of all files pre-compression
  - Summed size (in bytes) of all files post-compression for that compression level
  - Compression ratio (start size ÷ end size)
  
  For example, a `brotli_sizing.csv` file might look like:
 ```
-Level,Starting Size (sum),Ending Size (sum),Ratio
-1,640163737,75475769,8.48171201807
-4,640163737,57938028,11.0491115956
-11,640163737,44330525,14.4406982999
+Level,Elapsed Time(sec),Starting Size (sum),Ending Size (sum),Ratio,Compression Rate (Mbps)
+1,45.14965,8859342373,1095044218,8.09039692404,187.131622978
+2,67.895273,8859342373,1066110605,8.30996552464,124.440581915
+3,74.010295,8859342373,962750153,9.20211993256,114.158811033
 ```
 
 ### Merge Ratio
@@ -168,7 +169,7 @@ BarackObama,11.096364316,12.6569405488,12.8690585438
 ...
 ```
 ### Merge Speed
-The `merge_speed` option creates a `<compression_algo>_speed.csv` file for every distinct compression algorithm found in the `analysis` folder. The file lists the compression speed (MB/s) achieved for every individual JSON file in `downloaded_tweets` at each level of compression.
+The `merge_speed` option creates a `<compression_algo>_speed.csv` file for every distinct compression algorithm found in the `analysis` folder. The file lists the compression speed (MBps) achieved for every individual JSON file in `downloaded_tweets` at each level of compression.
 For example, a `zstandard_speed.csv` file might look like:
 ```
 Twitter Handle,Level 4,Level 7,Level 9
